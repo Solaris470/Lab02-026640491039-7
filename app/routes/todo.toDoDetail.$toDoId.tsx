@@ -52,7 +52,7 @@ Back To List</button>
                 <DetailRow label="Task ID" value={toDoData.toDoId} />
                 <DetailRow label="Task Name" value={toDoData.taskName} />
                 <DetailRow label="Status" value={toDoData.status} color={toDoData.status === 'Completed' ? 'bg-green-300' : 'bg-yellow-300'} />
-                <DetailRow label="Priority" value={toDoData.priority} color={toDoData.priority === 'High' ? 'text-red-500' : toDoData.priority === 'Medium' ? 'text-yellow-500' : 'text-green-500'} />
+                <DetailRow label="Priority" value={toDoData.priority} color={toDoData.priority === 'high' ? 'text-red-500' : toDoData.priority === 'medium' ? 'text-yellow-500' : 'text-green-500'} />
                 <DetailRow label="Due Date" value={toDoData.due_date} />
                 <DetailRow label="Description" value={toDoData.desc} />
                 <DetailRow label="Category" value={toDoData.category} />
@@ -64,7 +64,7 @@ Back To List</button>
     );
     
 }
-const DetailRow = ({ label, value, color = '' }) => (
+const DetailRow: React.FC<{ label: string; value: string; color?: string }> = ({ label, value, color = '' }) => (
     <div className="flex items-center">
         <span className="w-1/4 font-semibold text-gray-700">{label}:</span>
         <span className={`w-3/4 p-2 rounded-lg ${color} ${color ? 'text-white' : 'text-gray-800'}`}>{value}</span>
