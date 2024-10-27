@@ -3,8 +3,7 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import admin from "firebase-admin";
 
-import serviceAccount from "./config/lab02Firebase.json" assert { type: "json" };
-// import serviceAccount from "_____" with { type: "json" };
+import serviceAccount from "./config/firebase-config.json" assert { type: "json" };
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -20,19 +19,20 @@ app.listen(port, ()=>{
     console.log(`Web application listening on port ${port}.`);
 });
 
-async function addPet(tmpPetData){
-    const petRef = db.collection('Pets').doc();
-    const docRef = db.collection('Pets').doc(petRef.id);
-    let tmpObj = { ...tmpPetData, petId: petRef.id };
+
+async function addToDo(tmpToDoData){
+    const toDoRef = db.collection('to_do').doc();
+    const docRef = db.collection('to_do').doc(toDoRef.id);
+    let tmpObj = { ...tmpToDoData, toDoId: toDoRef.id };
     await docRef.set(tmpObj);
-    console.log('Pet added.');
+    console.log('ToDo added.');
 }
 
-app.post('/api/addPet', (req, res) => {
-    const { petName, petNote, petType, petBD, petOwner } = req.body;
-    const tmpData = { petName, petNote,petType,petBD,petOwner };
-    addPet(tmpData);
-    res.status(200).json({ message: '[INFO] Add new pet successfully.' });
+app.post('/api/addToDo', (req, res) => {
+    const { taskName, desc, status, priority, due_date ,assigned_by ,assigned_to ,category } = req.body;
+    const tmpData = { taskName, desc, status, priority, due_date ,assigned_by ,assigned_to ,category };
+    addToDo(tmpData);
+    res.status(200).json({ message: '[INFO] Add new ToDo successfully.' });
 })
 
 async function deletePet(petId){
@@ -47,10 +47,10 @@ app.delete('/api/deletePet/:petId', (req, res) => {
     res.status(200).json({ message: '[INFO] Deleted pet successfully.' });
 });
 
-async function fetchPets(){
+async function fetchToDos(){
     const result = [];
-    const petsRef = db.collection('Pets');
-    const docRef = await petsRef.get();
+    const todoRef = db.collection('to_do');
+    const docRef = await todoRef.get();
     docRef.forEach(doc => {
        result.push({
         id: doc.id,
@@ -61,47 +61,48 @@ async function fetchPets(){
     return JSON.stringify(result);
 }
 
-app.get('/api/getPetData', (req, res) => {
+app.get('/api/getToDoData', (req, res) => {
     res.set('Content-type', 'application/json');    
-    fetchPets().then((jsonData) => {
+    fetchToDos().then((jsonData) => {
         res.send(jsonData);
     }).catch((error) => {
         res.send(error);
     });
 });
 
-async function fetchPetById(petId){
+async function fetchToDoById(toDoId){
     const result = [];
-    const petRef = db.collection('Pets')
-                     .where('petId', '==', petId);
-    const docRef = await petRef.get();
+    const toDoRef = db.collection('to_do')
+                     .where('toDoId', '==', toDoId);
+    const docRef = await toDoRef.get();
     docRef.forEach(doc => {
        result.push({
         id: doc.id,
         ...doc.data()
        });
     });
+    
     return result;
 }
 
-app.get('/api/getPetById/:petId', (req, res) => {
-    const { petId } = req.params;
+app.get('/api/getToDoById/:toDoId', (req, res) => {
+    const { toDoId } = req.params;
     res.set('Content-type', 'application/json');
-    fetchPetById(petId).then((jsonData) => {
+    fetchToDoById(toDoId).then((jsonData) => {
         res.send(jsonData[0]);
     }).catch((error) => {
         res.send(error);
     });
 });
 
-async function updatePet(petId, petData){
-    const docRef = db.collection('Pets').doc(petId);
-    await docRef.update(petData);
-    console.log('Pet updated!');
+async function updatePet(toDoId, toDoData){
+    const docRef = db.collection('to_do').doc(toDoId);
+    await docRef.update(toDoData);
+    console.log('toFo updated!');
 }
 
-app.post('/api/editPet/:petId', (req, res) => {
-    const { petId, petName, petNote, petType, petBD, petOwner } = req.body;
-    updatePet(petId, { petName, petNote, petType, petBD, petOwner });
-    res.status(200).json({ message: '[INFO] Pet updated successfully.'});
+app.post('/api/editToDo/:toDoId', (req, res) => {
+    const { toDoId ,taskName, desc, status, priority, due_date ,assigned_by ,assigned_to ,category } = req.body;
+    updatePet(toDoId, { taskName, desc, status, priority, due_date ,assigned_by ,assigned_to ,category });
+    res.status(200).json({ message: '[INFO] Task updated successfully.'});
 });

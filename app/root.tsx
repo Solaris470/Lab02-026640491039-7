@@ -34,7 +34,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <ScrollRestoration />
-        <Scripts />
+        <Scripts />        
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
       </body>
     </html>
   );
