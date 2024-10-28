@@ -28,7 +28,7 @@ export default function Dashboard() {
     datasets: [
       {
         label: 'Sales',
-        data: [30, 45, 28, 80, 99, 43, 76, 47, 45, 65, 41, 39, 47],
+        data: [30, 45, 28, 60, 57, 43, 67, 47, 45, 65, 41, 39, 47],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
