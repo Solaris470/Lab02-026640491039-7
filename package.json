@@ -12,10 +12,14 @@
     "server": "node --no-warnings ./server/lab02Api.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@remix-run/node": "^2.12.1",
     "@remix-run/react": "^2.12.1",
     "@remix-run/serve": "^2.12.1",
     "body-parser": "^1.20.3",
+    "chart.js": "^4.4.5",
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "firebase": "^10.14.0",
@@ -24,6 +28,7 @@
     "isbot": "^4.1.0",
     "lab02-xxxxx-react-app": "file:",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "remix": "^2.12.1"
   },
