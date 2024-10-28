@@ -9,7 +9,7 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 export default function Dashboard() {
 
   const data = {
-    labels: ['0', '5k', '10k', '15k', '20k', '25k', '30k', '35k', '40k', '45k', '50k', '55k', '60k'],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'August', 'September', 'October',  'November', 'December'],
     datasets: [
       {
         label: 'Sales',
@@ -32,16 +32,9 @@ export default function Dashboard() {
     scales: {
       y: {
         beginAtZero: true,
-        min: 0,
-        max: 100,
-        ticks: {
-          stepSize: 20,
-          callback: (value: any) => `${value}%`,
-        },
       },
     },
   };
-  
 
   return (
     <>
@@ -57,7 +50,7 @@ export default function Dashboard() {
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faUsers} /></h2>
             </div>
             <h2 className="text-4xl font-bold mb-6">6</h2>
-            <p>Up from yesterday</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
             <div className="grid grid-cols-2 gap-4">
@@ -65,7 +58,7 @@ export default function Dashboard() {
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faBoxOpen} /></h2>
             </div>
             <h2 className="text-4xl font-bold mb-6">10</h2>
-            <p>Up from yesterday</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
             <div className="grid grid-cols-2 gap-4">
@@ -81,7 +74,7 @@ export default function Dashboard() {
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faClockRotateLeft} /></h2>
             </div>
             <h2 className="text-4xl font-bold mb-6">2</h2>
-            <p>Up from yesterday</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Up from yesterday</p>
           </div>
         </div>
 
