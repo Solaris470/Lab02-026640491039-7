@@ -35,15 +35,15 @@ app.post('/api/addToDo', (req, res) => {
     res.status(200).json({ message: '[INFO] Add new ToDo successfully.' });
 })
 
-async function deletePet(petId){
-    const docRef = db.collection("Pets").doc(petId);
+async function deletePet(toDoId){
+    const docRef = db.collection("to_do").doc(toDoId);
     await docRef.delete();
-    console.log('Pet deleted.');
+    console.log('ToDo deleted.');
 }
 
-app.delete('/api/deletePet/:petId', (req, res) => {
-    const { petId } = req.params;
-    deletePet(petId);
+app.delete('/api/deleteToDo/:toDoId', (req, res) => {
+    const { toDoId } = req.params;
+    deletePet(toDoId);
     res.status(200).json({ message: '[INFO] Deleted pet successfully.' });
 });
 

@@ -24,17 +24,17 @@ export default function HerbLists() {
     }
   }, [loadStatus]);
 
-  const handleDelete = async (petId: any) => {
+  const handleDelete = async (toDoId: any) => {
     try {
       const fetchData = async () => {
-        const petData = await fetch(
-          `http://localhost:3004/api/deletePet/${petId}`,
+        const toDoData = await fetch(
+          `http://localhost:3004/api/deleteToDo/${toDoId}`,
           {
             method: "DELETE",
           }
         );
-        if (petData.ok) {
-          const myJson = await petData.json();
+        if (toDoData.ok) {
+          const myJson = await toDoData.json();
           alert(myJson.message);
         } else {
           alert("[ERR] An error when deleting data.");
@@ -143,7 +143,7 @@ export default function HerbLists() {
                   </button>
                   </a>
                   <button
-                    onClick={() => handleDelete(to_do.id)}
+                    onClick={() => handleDelete(to_do.toDoId)}
                     className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-500 dark:hover:
                    focus:outline-none dark:focus:ring-red-700 flex"
                   >

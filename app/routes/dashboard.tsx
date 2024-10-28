@@ -56,23 +56,23 @@ export default function Dashboard() {
               <p>Total User</p>
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faUsers} /></h2>
             </div>
-            <h2 className="text-4xl font-bold mb-6">40200</h2>
+            <h2 className="text-4xl font-bold mb-6">6</h2>
             <p>Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
             <div className="grid grid-cols-2 gap-4">
-              <p>Total Order</p>
+              <p>Total Task</p>
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faBoxOpen} /></h2>
             </div>
-            <h2 className="text-4xl font-bold mb-6">40200</h2>
+            <h2 className="text-4xl font-bold mb-6">10</h2>
             <p>Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
             <div className="grid grid-cols-2 gap-4">
-              <p>Total Sales</p>
+              <p>Total Completed</p>
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faChartLine} /></h2>
             </div>
-            <h2 className="text-4xl font-bold mb-6">40200</h2>
+            <h2 className="text-4xl font-bold mb-6">4</h2>
             <p>Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
@@ -80,13 +80,13 @@ export default function Dashboard() {
               <p>Total Pending</p>
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faClockRotateLeft} /></h2>
             </div>
-            <h2 className="text-4xl font-bold mb-6">40200</h2>
+            <h2 className="text-4xl font-bold mb-6">2</h2>
             <p>Up from yesterday</p>
           </div>
         </div>
 
         <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
-        <h2 className="text-3xl font-bold mb-6">Sales Details</h2>
+        <h2 className="text-3xl font-bold mb-6">Task Compeled By Month</h2>
           <Line data={data} options={options} />
         </div>
       </div>
