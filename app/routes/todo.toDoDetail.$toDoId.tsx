@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "@remix-run/react";
+import { MetaFunction, useNavigate, useParams } from "@remix-run/react";
 import { auth } from '~/firebaseConfig';
 
+export const meta: MetaFunction = () => {
+    return [
+      { title: "Detail" },
+      { name: "description", content: "Welcome to Remix!" },
+    ];
+  };
 
 export default function HerbDetail(){
     const navigate = useNavigate();

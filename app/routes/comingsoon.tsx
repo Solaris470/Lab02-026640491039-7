@@ -2,6 +2,14 @@ import Navbar from "./template/header";
 import { auth } from '~/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { MetaFunction } from "@remix-run/react";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Coming Soon!!!" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function ComingSoon() {
   const navigate = useNavigate();

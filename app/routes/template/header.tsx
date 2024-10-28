@@ -1,4 +1,35 @@
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { auth, db } from '~/firebaseConfig';
+
+
 export default function Navbar() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const fetchUserFullName = async () => {
+      const uid = auth.currentUser?.uid;
+      if (uid) {
+        try {
+          // สร้าง reference ไปที่เอกสารของผู้ใช้ด้วย uid
+          const userDocRef = doc(db, "users", uid);
+          const userDoc = await getDoc(userDocRef);
+          
+          if (userDoc.exists()) {
+            // ดึงข้อมูล fullname จากเอกสารผู้ใช้
+            setFullName(userDoc.data().fullname);
+            setEmail(userDoc.data().email);
+          } 
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      } 
+    };
+
+    fetchUserFullName();
+  }, []);
+
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -53,7 +84,7 @@ export default function Navbar() {
                       src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                       alt="user photo"
                     />
-                    <p className="ms-1">Dev DekNoi</p>
+                    <p className="ms-1">{fullName}</p>
                   </button>
                 </div>
                 <div
@@ -65,13 +96,13 @@ export default function Navbar() {
                       className="text-sm text-gray-900 dark:text-white"
                       role="none"
                     >
-                      Neil Sims
+                      {fullName}
                     </p>
                     <p
                       className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                       role="none"
                     >
-                      neil.sims@flowbite.com
+                      {email}
                     </p>
                   </div>
                   <ul className="py-1" role="none">
@@ -104,8 +135,8 @@ export default function Navbar() {
                     </li>
                     <li>
                       <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        href="/logout"
+                        className="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Logout

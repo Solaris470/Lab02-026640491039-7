@@ -4,6 +4,14 @@ import { signOut } from 'firebase/auth';
 import { auth } from '~/firebaseConfig';
 import Navbar from "./template/header";
 import { useNavigate } from "react-router-dom";
+import { MetaFunction } from '@remix-run/react';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Logout" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Logout() {
   const navigate = useNavigate();

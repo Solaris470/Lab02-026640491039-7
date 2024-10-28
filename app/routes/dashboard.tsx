@@ -6,8 +6,16 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import { auth } from '~/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
+import { MetaFunction } from "@remix-run/react";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "DashBoard" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Dashboard() {
   const navigate = useNavigate();

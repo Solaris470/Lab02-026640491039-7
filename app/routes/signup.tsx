@@ -1,9 +1,17 @@
 // app/routes/signup.tsx
+import type { MetaFunction } from "@remix-run/node";
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '~/firebaseConfig';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Sign Up" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function SignUp() {
   const [email, setEmail] = useState('');

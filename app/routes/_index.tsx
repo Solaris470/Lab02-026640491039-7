@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // ใช้ Link แทน a สำห
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Welcome to My App" },
+    { title: "Welcome to Solar Management" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };

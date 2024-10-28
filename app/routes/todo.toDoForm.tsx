@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "@remix-run/react";
+import { MetaFunction, useNavigate } from "@remix-run/react";
 import Navbar from "./template/header";
 import { auth } from '~/firebaseConfig';
 import { useEffect } from "react";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Add Todo" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function PetFrom() {
   const navigate = useNavigate();

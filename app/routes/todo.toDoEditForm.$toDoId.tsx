@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "@remix-run/react";
+import { MetaFunction, useNavigate, useParams } from "@remix-run/react";
 import Navbar from "./template/header";
 import { auth } from '~/firebaseConfig';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "EditForm" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function PetEditForm(){
     const navigate = useNavigate();

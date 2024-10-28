@@ -3,6 +3,14 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '~/firebaseConfig';
 import { useNavigate } from "react-router-dom";
+import { MetaFunction } from '@remix-run/react';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Login() {
   const [email, setEmail] = useState('');
