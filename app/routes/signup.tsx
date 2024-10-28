@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const db = getFirestore();
@@ -21,6 +22,7 @@ export default function SignUp() {
       const user = userCredential.user;
 
       await setDoc(doc(db, 'users', user.uid), {
+        fullname: fullname,
         email: user.email,
         createdAt: new Date().toISOString(),
       });
@@ -40,6 +42,16 @@ export default function SignUp() {
         <h1 className="text-2xl font-bold text-center mb-4">Sign Up</h1>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <form onSubmit={handleSignUp}>
+          <div className="mb-4">
+            <input
+              type="fullname"
+              placeholder="Fullname"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+              required
+              className="border border-gray-300 p-2 w-full rounded focus:outline-none focus:ring focus:ring-green-300"
+            />
+          </div>
           <div className="mb-4">
             <input
               type="email"
