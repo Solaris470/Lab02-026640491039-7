@@ -13,7 +13,9 @@ export default function Logout() {
       try {
         await signOut(auth);
         // นำทางไปยังหน้า Login หลังจากออกจากระบบสำเร็จ
-        navigate('/');
+        setTimeout(() => {
+        navigate('/')
+      }, 1000);
       } catch (err) {
         console.error('Logout error:', err);
       }
@@ -24,8 +26,8 @@ export default function Logout() {
 
   return (
     <>
-      <Navbar />
       <div className="flex justify-center pt-64">
+        
         <h1 className="text-2xl font-bold">Logging out...</h1>
       </div>
     </>

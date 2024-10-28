@@ -66,7 +66,7 @@ export default function Dashboard() {
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faChartLine} /></h2>
             </div>
             <h2 className="text-4xl font-bold mb-6">10</h2>
-            <p>Up from yesterday</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
             <div className="grid grid-cols-2 gap-4">
