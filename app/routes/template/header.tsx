@@ -24,7 +24,9 @@ export default function Navbar() {
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
-      } 
+      } else {
+        console.log("User not logged in.");
+      }
     };
 
     fetchUserFullName();
@@ -58,7 +60,7 @@ export default function Navbar() {
                   ></path>
                 </svg>
               </button>
-              <a href="https://flowbite.com" className="flex ms-2 md:me-24">
+              <a href="" className="flex ms-2 md:me-24">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
                   className="h-8 me-3"
@@ -136,7 +138,7 @@ export default function Navbar() {
                     <li>
                       <a
                         href="/logout"
-                        className="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Logout

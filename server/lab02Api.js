@@ -44,7 +44,7 @@ async function deletePet(toDoId){
 app.delete('/api/deleteToDo/:toDoId', (req, res) => {
     const { toDoId } = req.params;
     deletePet(toDoId);
-    res.status(200).json({ message: '[INFO] Deleted pet successfully.' });
+    res.status(200).json({ message: '[INFO] Deleted successfully.' });
 });
 
 async function fetchToDos(){
