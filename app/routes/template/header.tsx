@@ -60,7 +60,7 @@ export default function Navbar() {
                   ></path>
                 </svg>
               </button>
-              <a href="" className="flex ms-2 md:me-24">
+              <a href="/dashboard" className="flex ms-2 md:me-24">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
                   className="h-8 me-3"
