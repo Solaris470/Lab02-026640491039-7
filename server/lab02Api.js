@@ -106,3 +106,28 @@ app.post('/api/editToDo/:toDoId', (req, res) => {
     updatePet(toDoId, { taskName, desc, status, priority, due_date ,assigned_by ,assigned_to ,category });
     res.status(200).json({ message: '[INFO] Task updated successfully.'});
 });
+
+async function getCompleteData(){
+    const result = [];
+    const toDoRef = db.collection('to_do')
+                     .where('status', '==', 'completed');
+    const docRef = await toDoRef.get();
+    docRef.forEach(doc => {
+       result.push({
+        id: doc.id,
+        ...doc.data()
+       });
+    });
+    
+    return result;
+}
+
+app.get('/api/getCompleteData', (req, res) => {
+    res.set('Content-type', 'application/json');
+    getCompleteData().then((querySnapshot) => {
+        const count = querySnapshot.size; 
+        res.send(count);
+    }).catch((error) => {
+        res.send(error);
+    });
+});

@@ -72,7 +72,7 @@ export default function Dashboard() {
               <p>Total Completed</p>
               <h2 className="text-4xl text-end"><FontAwesomeIcon icon={faChartLine} /></h2>
             </div>
-            <h2 className="text-4xl font-bold mb-6">4</h2>
+            <h2 className="text-4xl font-bold mb-6">10</h2>
             <p>Up from yesterday</p>
           </div>
           <div className="max-w-ml bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
