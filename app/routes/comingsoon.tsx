@@ -1,6 +1,22 @@
 import Navbar from "./template/header";
+import { auth } from '~/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 export default function ComingSoon() {
+  const navigate = useNavigate();
+
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (!user) {
+        navigate('/login'); // Redirect to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup subscription
+  }, [navigate]);
+  
   return (
     <>
       <Navbar />

@@ -1,9 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "@remix-run/react";
 import Navbar from "./template/header";
+import { auth } from '~/firebaseConfig';
+import { useEffect } from "react";
 
 export default function PetFrom() {
   const navigate = useNavigate();
+
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+        if (!user) {
+            navigate('/login'); // Redirect to login if not authenticated
+        }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription
+    }, [navigate]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

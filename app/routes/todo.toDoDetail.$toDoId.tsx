@@ -1,8 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "@remix-run/react";
+import { auth } from '~/firebaseConfig';
+
 
 export default function HerbDetail(){
+    const navigate = useNavigate();
 
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+        if (!user) {
+            navigate('/login'); // Redirect to login if not authenticated
+        }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription
+    }, [navigate]);
     
     const myParams = useParams();
     const toDoId = myParams.toDoId;

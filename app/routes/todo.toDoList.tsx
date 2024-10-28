@@ -1,9 +1,24 @@
 import { useState, useEffect } from "react";
 import Navbar from "./template/header";
+import { auth } from '~/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 export default function HerbLists() {
   const [loadStatus, setLoadStatus] = useState(true);
   const [toDoData, setToDoData] = useState([]);
+
+  const navigate = useNavigate();
+
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+        if (!user) {
+            navigate('/login'); // Redirect to login if not authenticated
+        }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription
+    }, [navigate]);
 
   useEffect(() => {
     try {

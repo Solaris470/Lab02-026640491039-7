@@ -3,10 +3,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faBoxOpen, faChartLine, faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
+import { auth } from '~/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
+  // Authentication check
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (!user) {
+        navigate('/login'); // Redirect to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup subscription
+  }, [navigate]);
 
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July',  'August', 'September', 'October',  'November', 'December'],
